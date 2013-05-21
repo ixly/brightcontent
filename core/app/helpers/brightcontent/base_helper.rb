@@ -13,7 +13,7 @@ module Brightcontent
     def link_for_scope(scope)
       case scope[:type]
       when :boolean
-        polymorphic_url(resource_class, scope[:as] => true)
+        polymorphic_url([parent_or_nil, resource_class], scope[:as] => true)
       end
     end
 

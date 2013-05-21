@@ -6,22 +6,22 @@ module Brightcontent
 
     def create
       if params["commit_and_continue"].present?
-        create! { polymorphic_url(resource) }
+        create! { polymorphic_url([parent_or_nil, resource]) }
       else
-        create! { polymorphic_url(resource_class) }
+        create! { polymorphic_url([parent_or_nil, resource_class]) }
       end
     end
 
     def update
       if params["commit_and_continue"].present?
-        update! { polymorphic_url(resource) }
+        update! { polymorphic_url([parent_or_nil, resource]) }
       else
-        update! { polymorphic_url(resource_class) }
+        update! { polymorphic_url([parent_or_nil, resource_class]) }
       end
     end
 
     def destroy
-      destroy! { polymorphic_url(resource_class) }
+      destroy! { polymorphic_url([parent_or_nil, resource_class]) }
     end
   end
 end

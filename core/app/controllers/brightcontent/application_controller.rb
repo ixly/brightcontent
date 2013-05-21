@@ -17,5 +17,10 @@ module Brightcontent
     def authorize
       redirect_to login_url if current_user.nil?
     end
+
+    def parent_or_nil
+      parent if respond_to? :parent
+    end
+    helper_method :parent_or_nil
   end
 end

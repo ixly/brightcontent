@@ -1,6 +1,6 @@
 <div id="overview">
   
-  <%= link_to "Create new #{resource_instance_name.to_s.humanize}", polymorphic_url(resource_class, action: :new), class: "btn btn-primary btn-right" %>
+  <%= link_to "Create new #{resource_instance_name.to_s.humanize}", [:new, parent_or_nil, resource_class], class: "btn btn-primary btn-right" %>
   <h1><%= resource_collection_name.to_s.humanize %></h1>
   <%= render "index_top" %>
   
