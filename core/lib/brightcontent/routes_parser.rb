@@ -30,14 +30,21 @@ module Brightcontent
 
     def resource_names
       routes_hash.map do |route|
-        if route && route[:action] == "index"
-          route[:controller].match(/brightcontent\/(.+)/)[1]
+        name = route[:controller].match(/brightcontent\/(.+)/)[1]
+        if route && route[:action] == "index" && route[:path_spec].start_with?('/' + name)
+          name
         end
       end.compact.uniq
     end
 
     def routes_hash
-      @routes_hash ||= Engine.routes.routes.map(&:defaults)
+      @routes_hash ||= Engine.routes.routes.map do |r|
+        {
+          controller: r.defaults[:controller],
+          action: r.defaults[:action],
+          path_spec: r.path.spec.to_s
+        }
+      end
     end
 
     def engine_resources
