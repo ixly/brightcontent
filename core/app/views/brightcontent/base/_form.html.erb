@@ -6,16 +6,20 @@
       <%= render_form_field(form, form_field) -%>
     <% end -%>
   </div>
-  <div class="form-actions">
+  <% if can?(:update, resource) || can?(:destroy, resource) %>
+    <div class="form-actions">
 
-    <%= form.button :submit, class: "btn btn-primary" %>
-    <%= form.button :submit, "Save and continue", :name => "commit_and_continue" %>
-
-    <% unless resource.new_record? -%>
-      <% if can? :destroy, resource %>
-        <%= link_to "Delete", [parent_or_nil, resource], :class => "btn btn-danger delete", :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+      <% if can? :update, resource %>
+        <%= form.button :submit, class: "btn btn-primary" %>
+        <%= form.button :submit, "Save and continue", :name => "commit_and_continue" %>
       <% end %>
-    <% end -%>
-  </div>
 
+      <% unless resource.new_record? -%>
+        <% if can? :destroy, resource %>
+          <%= link_to "Delete", [parent_or_nil, resource], :class => "btn btn-danger delete", :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+        <% end %>
+      <% end -%>
+
+    </div>
+  <% end -%>
 <% end -%>
