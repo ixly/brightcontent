@@ -4,24 +4,24 @@ module Brightcontent
       redirect_to action: :edit
     end
 
-    def create
-      if params["commit_and_continue"].present?
-        create! { polymorphic_url([parent_or_nil, resource]) }
-      else
-        create! { polymorphic_url([parent_or_nil, resource_class]) }
+    %w{create update destroy}.each do |action|
+      define_method action do
+        super() do |format|
+          format.json
+          format.html do
+            redirect_to polymorphic_url([
+              parent_or_nil,
+              commit_and_continue? ? resource : resource_class
+            ])
+          end
+        end
       end
     end
 
-    def update
-      if params["commit_and_continue"].present?
-        update! { polymorphic_url([parent_or_nil, resource]) }
-      else
-        update! { polymorphic_url([parent_or_nil, resource_class]) }
-      end
-    end
+    private
 
-    def destroy
-      destroy! { polymorphic_url([parent_or_nil, resource_class]) }
+    def commit_and_continue?
+      params["commit_and_continue"].present?
     end
   end
 end
