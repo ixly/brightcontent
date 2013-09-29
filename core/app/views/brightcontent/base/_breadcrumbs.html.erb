@@ -1,0 +1,28 @@
+<% if @breadcrumbs %>
+  <ul class='breadcrumb'>
+    <% @breadcrumbs.each.with_index do |crumb, index| %>
+      <% crumb_parent = @breadcrumbs[index - 1] unless index == 0 %>
+      <li>
+        <%= render "breadcrumb_collection", crumb_resource: crumb, crumb_parent: crumb_parent %>
+        <span class='divider'>/</span>
+      </li>
+      <li>
+        <%= render "breadcrumb", crumb_resource: crumb, crumb_parent: crumb_parent %>
+        <span class='divider'>/</span>
+      </li>
+    <% end %>
+    <% if (resource rescue false) %>
+      <li>
+      <%= render "breadcrumb_collection", crumb_resource: resource, crumb_parent: (parent rescue nil) %>
+        <span class='divider'>/</span>
+      </li>
+      <li>
+        <%= render_if_exists("/brightcontent/#{resource.class.model_name.underscore.pluralize}/breadcrumb_name", crumb_resource: resource) || resource.id %>
+      </li>
+    <% else %>
+      <li>
+        <%= resource_class.name.underscore.pluralize.humanize %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

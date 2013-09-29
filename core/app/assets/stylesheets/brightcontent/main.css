@@ -2,7 +2,7 @@ body {
   background-color: #f5f5f5;
 }
 
-.form-inputs input,
+.form-inputs input.string,
 .form-inputs textarea {
   width: 100%;
   max-width: 622px;

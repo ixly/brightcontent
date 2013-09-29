@@ -1,9 +1,6 @@
 <% if cannot? :edit, item %>
-  <%= link_to "Show", [parent_or_nil, item], class: "btn btn-mini btn-primary" %>
+  <%= link_to "Show", [parent_or_nil, item], class: :show %>
 <% end %>
 <% if can? :edit, item %>
-  <%= link_to "Edit", [:edit, parent_or_nil, item], class: "btn btn-mini btn-primary" %>
-<% end %>
-<% if can? :destroy, item %>
-  <%= link_to "Delete", [parent_or_nil, item], class: "btn btn-mini", confirm: 'Are you sure?', method: :delete %>
+  <%= link_to "Edit", [:edit, parent_or_nil, item], class: :edit %>
 <% end %>

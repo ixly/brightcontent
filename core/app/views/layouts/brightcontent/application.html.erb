@@ -4,7 +4,9 @@
   <title>Brightcontent</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "brightcontent/brightcontent", :media => "all" %>
+  <%= stylesheet_link_tag    "brightcontent/custom2", :media => "all" %>
   <%= javascript_include_tag "brightcontent/brightcontent" %>
+  <%= javascript_include_tag "brightcontent/bootstrap.js" %>
   <%= javascript_include_tag "brightcontent/custom2" %>
   <%= csrf_meta_tags %>
   <!--[if lt IE 9]>
@@ -44,9 +46,14 @@
     </div>
   <% end %>
 
+  <div class="container">
+    <%= render 'brightcontent/base/breadcrumbs'%>
+  </div>
+
+  <%= render_if_exists 'before_content' %>
+
   <div class="container <%= "box" unless controller.controller_name == 'sessions' %>">
     <%= render "brightcontent/application/show_flash_names" %>
-    <%= render 'brightcontent/application/breadcrumbs'%>
     <%= yield %>
   </div>
 
