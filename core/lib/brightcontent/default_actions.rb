@@ -5,14 +5,18 @@ module Brightcontent
     end
 
     %w{create update destroy}.each do |action|
-      define_method action do
-        super() do |format|
-          format.json
-          format.html do
-            redirect_to polymorphic_url([
-              parent_or_nil,
-              commit_and_continue? ? resource : resource_class
-            ])
+      define_method action do |*args, &block|
+        if block
+          super *args, &block
+        else
+          super() do |format|
+            format.json
+            format.html do
+              redirect_to polymorphic_url([
+                parent_or_nil,
+                commit_and_continue? ? resource : resource_class
+              ])
+            end
           end
         end
       end
