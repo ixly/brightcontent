@@ -17,4 +17,5 @@
 //= require brightcontent/attachments
 //= require brightcontent/bootstrap
 //= require brightcontent/custom
+//= require brightcontent/custom2
 //= require_tree .
