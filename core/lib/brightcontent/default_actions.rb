@@ -9,14 +9,17 @@ module Brightcontent
         if block
           super *args, &block
         else
-          super() do |format|
-            format.json
-            format.html do
+          send "#{action}!" do |success, failure|
+            success.json
+            success.html do
               redirect_to polymorphic_url([
                 parent_or_nil,
                 commit_and_continue? ? resource : resource_class
               ])
+
             end
+
+            failure.html { render (action == 'create' ? :new : :edit) }
           end
         end
       end
