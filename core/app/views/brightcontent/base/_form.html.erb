@@ -10,8 +10,8 @@
     <div class="form-actions">
 
       <% if can? :update, resource %>
-        <%= form.button :submit, class: "btn btn-primary" %>
-        <%= form.button :submit, "Save and continue", :name => "commit_and_continue" %>
+        <%= form.button :submit, "Save and continue", :name => "commit_and_continue", class: 'btn btn-primary' %>
+        <%= form.button :submit %>
       <% end %>
 
       <% unless resource.new_record? -%>
