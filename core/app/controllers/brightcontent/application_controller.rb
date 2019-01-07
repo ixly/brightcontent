@@ -19,7 +19,7 @@ module Brightcontent
     end
 
     def parent_or_nil
-      parent if respond_to? :parent
+      parent if respond_to? :parent, true
     end
     helper_method :parent_or_nil
   end
