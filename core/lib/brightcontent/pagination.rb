@@ -16,13 +16,19 @@ module Brightcontent
 
     private
 
-    def end_of_association_chain
+    def collection
       if action_name == "index" && self.class.per_page_count > 0
-        super.paginate(page: params[:page], per_page: self.class.per_page_count)
+        end_of_association_chain.paginate(page: params[:page], per_page: self.class.per_page_count)
       else
-        super
+        end_of_association_chain
       end
     end
-
+    # def end_of_association_chain
+    #   if action_name == "index" && self.class.per_page_count > 0
+    #     super.paginate(page: params[:page], per_page: self.class.per_page_count)
+    #   else
+    #     super
+    #   end
+    # end
   end
 end
