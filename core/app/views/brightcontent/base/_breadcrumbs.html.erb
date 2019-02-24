@@ -17,11 +17,11 @@
         <span class='divider'>/</span>
       </li>
       <li>
-        <%= render_if_exists("/brightcontent/#{resource.class.model_name.underscore.pluralize}/breadcrumb_name", crumb_resource: resource) || resource.id %>
+        <%= render_if_exists("/brightcontent/#{resource.class.model_name.to_s.underscore.pluralize}/breadcrumb_name", crumb_resource: resource) || resource.id %>
       </li>
     <% else %>
       <li>
-        <%= resource_class.name.underscore.pluralize.humanize %>
+        <%= resource_class.name.to_s.underscore.pluralize.humanize %>
       </li>
     <% end %>
   </ul>
