@@ -2,8 +2,7 @@ module Brightcontent
   class SessionsController < ApplicationController
     skip_before_filter :authorize
 
-    def new
-    end
+    def new; end
 
     def create
       user = AdminUser.find_by_email(params[:email])
@@ -11,7 +10,7 @@ module Brightcontent
         session[:brightcontent_user_id] = user.id
         redirect_to root_url
       else
-        flash.now.alert = "Email or password is invalid"
+        flash.now.alert = 'Email or password is invalid'
         render :new
       end
     end

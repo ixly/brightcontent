@@ -11,7 +11,7 @@ module Brightcontent
     include Pagination
 
     def permitted_params
-      params.permit!
+      params.permit!.to_h
     end
 
     protected
