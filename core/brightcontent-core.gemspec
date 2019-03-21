@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- spec/*`.split("\n")
   s.require_paths = ["lib"]
 
-  s.add_dependency "rails", "~> 5.0.7"
+  s.add_dependency "rails", "~> 5.2.2"
   s.add_dependency "jquery-rails"
   s.add_dependency "bcrypt"
   s.add_dependency "inherited_resources"

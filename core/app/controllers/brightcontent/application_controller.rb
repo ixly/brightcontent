@@ -1,6 +1,6 @@
 module Brightcontent
   class ApplicationController < ActionController::Base
-    before_filter :authorize
+    before_action :authorize
 
     private
 
