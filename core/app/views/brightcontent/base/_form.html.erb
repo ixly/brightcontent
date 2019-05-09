@@ -16,7 +16,7 @@
 
       <% unless resource.new_record? -%>
         <% if can? :destroy, resource %>
-          <%= link_to "Delete #{resource_instance_name.to_s.humanize}", [parent_or_nil, resource], :class => "btn btn-danger delete", :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+          <%= link_to "Delete #{resource.model_name.human}", [parent_or_nil, resource], :class => "btn btn-danger delete", :method => :delete, :data => { :confirm => 'Are you sure?' } %>
         <% end %>
       <% end -%>
 

@@ -21,7 +21,7 @@
       </li>
     <% else %>
       <li>
-        <%= resource_class.name.to_s.underscore.pluralize.humanize %>
+        <%= resource_class.model_name.human.pluralize %>
       </li>
     <% end %>
   </ul>

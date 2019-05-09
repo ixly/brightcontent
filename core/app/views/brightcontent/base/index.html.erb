@@ -1,7 +1,7 @@
 <div id="overview">
 
   <%- if parent_or_nil.nil? || can?(:update, parent_or_nil) %>
-    <%= link_to "Create new #{resource_instance_name.to_s.humanize}", polymorphic_url([parent_or_nil, resource_class], action: :new), class: "btn btn-primary btn-right" %>
+    <%= link_to "Create new #{resource_class.model_name.human}", polymorphic_url([parent_or_nil, resource_class], action: :new), class: "btn btn-primary btn-right" %>
   <% end %>
   <h1><%= resource_class.model_name.human.pluralize %></h1>
 
